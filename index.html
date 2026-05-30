@@ -52,13 +52,20 @@
     position:fixed; top:0; left:0; right:0; z-index:200;
     display:flex; align-items:center; justify-content:space-between;
     padding:24px var(--edge);
-    background:rgba(255,252,247,.85);
+    background:rgba(255,252,247,.92);
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid transparent;
-    transition:border-color .3s ease;
+    transition:border-color .3s ease, background .3s ease;
   }
-  nav.scrolled{ border-color:var(--line); }
+  /* solid fallback when backdrop-filter isn't supported (mostly older mobile browsers) */
+  @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+    nav{ background:#FFFCF7; }
+  }
+  nav.scrolled{
+    background:rgba(255,252,247,.97);
+    border-color:var(--line);
+  }
   .brand{
     font-weight:800; font-size:1.15rem; letter-spacing:-.02em;
     display:flex; align-items:center; gap:8px;
@@ -352,12 +359,13 @@
   .projects{ display:flex; flex-direction:column; gap:30px; }
   .project{
     display:grid; grid-template-columns:1fr 1fr; gap:0; align-items:stretch;
-    background:var(--card); border:1px solid var(--line); border-radius:24px;
-    overflow:hidden; transition:transform .35s ease, box-shadow .35s ease;
+    background:var(--card); border:1px solid #D9D2C2; border-radius:24px;
+    overflow:hidden; transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
   }
   .project:hover{
     transform:translateY(-6px);
     box-shadow:0 30px 60px -20px rgba(0,0,0,.14);
+    border-color:#C7BEA9;
   }
   .project:nth-child(even){ direction:rtl; }
   .project:nth-child(even) > *{ direction:ltr; }
@@ -552,7 +560,8 @@
     :root{ --edge:20px; }
     .nav-links{ display:none; }
     .menu-btn{ display:block; }
-    nav{ padding:18px var(--edge); }
+    nav{ padding:18px var(--edge); background:#FFFCF7; }
+    nav.scrolled{ background:#FFFCF7; }
     header{ padding:120px var(--edge) 70px; }
     section{ padding:64px var(--edge); }
     .hi{ font-size:2rem; }
@@ -742,52 +751,52 @@
       </div>
     </a>
 
-    <!-- [EDIT] project 2 -->
+    <!-- Project 2: embedded / IoT -->
     <a href="#" class="project obs">
       <div class="project-media pm2">
         <span class="num">02</span>
-        Project Two
+        Smart Home Monitor
       </div>
       <div class="project-info">
-        <div class="project-tag">Embedded · 2025</div>
-        <div class="project-title">Project Two Title</div>
-        <p class="project-desc">Another quick summary describing the build, the stack, and any results or takeaways worth highlighting.</p>
+        <div class="project-tag">Embedded · IoT · 2025</div>
+        <div class="project-title">Smart Home Monitoring System</div>
+        <p class="project-desc">An IoT system built around an ESP32 microcontroller that tracks temperature, humidity, and motion in real time, pushes readings to a small web dashboard, and triggers alerts when something goes outside the expected range. A hands-on dive into sensors, wireless communication, and embedded C.</p>
         <div class="project-stack">
-          <span>C</span><span>Microcontroller</span><span>Sensors</span>
+          <span>C/C++</span><span>ESP32</span><span>Arduino</span><span>Wi-Fi</span><span>Sensors</span>
         </div>
         <span class="project-cta">View project <span class="ar">→</span></span>
       </div>
     </a>
 
-    <!-- [EDIT] project 3 -->
+    <!-- Project 3: algorithms visualizer -->
     <a href="#" class="project obs">
       <div class="project-media pm3">
         <span class="num">03</span>
-        Project Three
+        Pathfinding Visualizer
       </div>
       <div class="project-info">
-        <div class="project-tag">Data · 2025</div>
-        <div class="project-title">Project Three Title</div>
-        <p class="project-desc">Brief description of the project. What problem were you solving? What did you build to solve it?</p>
+        <div class="project-tag">Algorithms · 2025</div>
+        <div class="project-title">Pathfinding Algorithm Visualizer</div>
+        <p class="project-desc">An interactive tool that animates how popular pathfinding algorithms — Dijkstra, A*, BFS, and DFS — explore a grid to find the shortest route between two points. You can drop walls, drag the start and goal nodes, and watch each algorithm's strategy play out side by side. Built as a fun way to make Data Structures &amp; Algorithms click.</p>
         <div class="project-stack">
-          <span>Python</span><span>Pandas</span><span>Matplotlib</span>
+          <span>JavaScript</span><span>HTML Canvas</span><span>Algorithms</span><span>Data Structures</span>
         </div>
         <span class="project-cta">View project <span class="ar">→</span></span>
       </div>
     </a>
 
-    <!-- [EDIT] project 4 -->
+    <!-- Project 4: software engineering + database -->
     <a href="#" class="project obs">
       <div class="project-media pm4">
         <span class="num">04</span>
-        Project Four
+        Library Management
       </div>
       <div class="project-info">
-        <div class="project-tag">Tool · 2024</div>
-        <div class="project-title">Project Four Title</div>
-        <p class="project-desc">Final placeholder card — replace with a real project once you have one to feature here.</p>
+        <div class="project-tag">Software &middot; Database &middot; 2024</div>
+        <div class="project-title">Library Management System</div>
+        <p class="project-desc">A desktop application that lets a librarian manage books, members, and borrowing records — search the catalog, check books in and out, track due dates, and generate overdue reports. A full CRUD app backed by a relational database, written as a course project to practice object-oriented design and SQL.</p>
         <div class="project-stack">
-          <span>JavaScript</span><span>HTML</span><span>CSS</span>
+          <span>Java</span><span>JavaFX</span><span>MySQL</span><span>OOP</span>
         </div>
         <span class="project-cta">View project <span class="ar">→</span></span>
       </div>
